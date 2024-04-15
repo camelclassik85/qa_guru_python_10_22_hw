@@ -47,7 +47,7 @@ class Config(BaseSettings):
 
         elif context == 'bstack':
             options.set_capability('remote_url', self.remote_url)
-            options.set_capability('deviceName', self.deviceName)
+            options.set_capability('deviceName', self.device_name)
             options.set_capability('platformVersion', self.platform_version)
             options.set_capability('app', self.app)
             options.set_capability(

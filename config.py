@@ -12,17 +12,17 @@ from pydantic_settings import BaseSettings
 # runs_on_bstack = app.startswith('bs://')
 # if runs_on_bstack:
 #     remote_url = "http://hub.browserstack.com/wd/hub"
-load_dotenv()
+load_dotenv('.env.credentials')
 
 class Config(BaseSettings):
     # load_dotenv('.env.real_local')
     timeout: float = float(os.getenv('TIMEOUT'))
     remote_url: str = os.getenv('REMOTE_URL')
-    # platform_version: str = os.getenv('PLATFORM_VERSION')
-    # device_name: str = os.getenv('DEVICE_NAME')
+    platform_version: str = os.getenv('PLATFORM_VERSION', '')
+    device_name: str = os.getenv('DEVICE_NAME')
     app_wait_activity: str = os.getenv("appWaitActivity")
     app: str = os.getenv('APP')
-    load_dotenv('.env.credentials')
+    # load_dotenv('.env.credentials')
     user_name: str = os.getenv('USER_NAME')
     access_key: str = os.getenv('ACCESS_KEY')
 
@@ -46,16 +46,16 @@ class Config(BaseSettings):
             options.set_capability('app', path(self.app))
 
         if context == 'bstack':
-            options.set_capability('remote_url', self.URL)
+            options.set_capability('remote_url', self.remote_url)
             options.set_capability('deviceName', self.deviceName)
             options.set_capability('platformVersion', self.platform_version)
             options.set_capability('app', self.app)
             options.set_capability(
                 'bstack:options',
                 {
-                    "projectName": "First Python project",
-                    "buildName": "browserstack-build-1",
-                    "sessionName": "BStack first_test",
+                    "projectName": "Android app Python project",
+                    "buildName": "android-browserstack-build",
+                    "sessionName": "Android",
                     "userName": self.user_name,
                     "accessKey": self.access_key,
                 },

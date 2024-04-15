@@ -37,7 +37,7 @@ class Config(BaseSettings):
             options.set_capability('appWaitActivity', self.app_wait_activity)
             options.set_capability('app', path(self.app))
 
-        if context == 'real_local':
+        elif context == 'real_local':
             print(self.remote_url)
             print(self.app)
             print(self.timeout)
@@ -45,7 +45,7 @@ class Config(BaseSettings):
             options.set_capability('appWaitActivity', self.app_wait_activity)
             options.set_capability('app', path(self.app))
 
-        if context == 'bstack':
+        elif context == 'bstack':
             options.set_capability('remote_url', self.remote_url)
             options.set_capability('deviceName', self.deviceName)
             options.set_capability('platformVersion', self.platform_version)

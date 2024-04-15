@@ -4,7 +4,7 @@ import pytest
 from dotenv import load_dotenv
 from selene import browser
 from appium import webdriver
-from config import run_config
+# from config import run_config
 from utils import allure_attach
 from utils.resource import path
 
@@ -16,19 +16,21 @@ def pytest_addoption(parser):
 
 def pytest_configure(config):
     context = config.getoption('--context')
-    dotenv_path = path(f'.env.{context}')
-    if os.path.exists(dotenv_path):
-        load_dotenv(dotenv_path=dotenv_path)
+    dotenv_path = f'.env.{context}'
+    # if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path=dotenv_path)
 
 
 
-@pytest.fixture
-def context(request):
-    return request.config.getoption("--context")
+# @pytest.fixture
+# def context(request):
+#     return request.config.getoption("--context")
 
 
 @pytest.fixture(scope='function', autouse=True)
-def mobile_management(context):
+def mobile_management(request):
+    from config import run_config
+    context = request.config.getoption("--context")
     with allure.step('Driver config create'):
         options = run_config.to_driver_options(context=context)
 

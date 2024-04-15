@@ -12,7 +12,7 @@ from pydantic_settings import BaseSettings
 # runs_on_bstack = app.startswith('bs://')
 # if runs_on_bstack:
 #     remote_url = "http://hub.browserstack.com/wd/hub"
-
+load_dotenv()
 
 class Config(BaseSettings):
     # load_dotenv('.env.real_local')

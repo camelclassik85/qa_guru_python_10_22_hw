@@ -4,18 +4,17 @@ from dotenv import load_dotenv
 from utils.resource import path
 from pydantic_settings import BaseSettings
 
-load_dotenv('.env.credentials')
+# load_dotenv('.env.credentials')
 
 
 class Config(BaseSettings):
-    # load_dotenv('.env.real_local')
     timeout: float = float(os.getenv('TIMEOUT'))
     remote_url: str = os.getenv('REMOTE_URL')
     platform_version: str = os.getenv('PLATFORM_VERSION', '')
     device_name: str = os.getenv('DEVICE_NAME', '')
     app_wait_activity: str = os.getenv("appWaitActivity", '')
     app: str = os.getenv('APP')
-    # load_dotenv('.env.credentials')
+    load_dotenv('.env.credentials')
     user_name: str = os.getenv('USER_NAME')
     access_key: str = os.getenv('ACCESS_KEY')
 

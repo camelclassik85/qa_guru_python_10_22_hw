@@ -4,7 +4,6 @@ import pytest
 from dotenv import load_dotenv
 from selene import browser
 from appium import webdriver
-from config import run_config
 from utils import allure_attach
 from utils.resource import path
 
@@ -28,6 +27,7 @@ def context(request):
 
 @pytest.fixture(scope='function', autouse=True)
 def mobile_management(context):
+    from config import run_config
     with allure.step('Driver config create'):
         options = run_config.to_driver_options(context=context)
 

@@ -11,6 +11,7 @@ class WelcomeScreenPage:
                                                 'org.wikipedia.alpha:id/fragment_onboarding_forward_button'))
         self.button_get_started = browser.element((AppiumBy.ID,
                                                    'org.wikipedia.alpha:id/fragment_onboarding_done_button'))
+        self.skip_button = browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_skip_button'))
 
     def check_welcome_screen(self):
         with step('First welcome screen and click to Continue'):
@@ -25,6 +26,9 @@ class WelcomeScreenPage:
         with step(f'Checking fourth page and click to Geet started'):
             self.primaryTextView.should(have.text('Data & Privacy'))
             self.button_get_started.click()
+
+    def skip_welcome_screen(self):
+        self.skip_button.click()
 
 
 welcome_screen = WelcomeScreenPage()

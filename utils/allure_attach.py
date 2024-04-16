@@ -1,6 +1,5 @@
 import allure
 import requests
-from config import run_config
 
 
 def attach_screenshot(browser):
@@ -20,6 +19,7 @@ def attach_xml(browser):
 
 
 def attach_video(session_id):
+    from config import run_config
     # user_name = os.getenv('USER_NAME')
     # access_key = os.getenv('ACCESS_KEY')
     bstack_session = requests.get(
